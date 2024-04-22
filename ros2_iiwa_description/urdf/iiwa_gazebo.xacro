@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="iiwa_gazebo" params="prefix">
+
+        <gazebo reference="${prefix}link_0">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_1">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_2">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_3">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_4">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_5">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_6">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="${prefix}link_7">
+            <material>Gazebo/Gray</material>
+        </gazebo>
+
+        <gazebo reference="world" >
+        </gazebo>
+        <gazebo>
+            <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+                <robot_param>robot_description</robot_param>
+                <robot_param_node>robot_state_publisher</robot_param_node>
+                <parameters>$(find ros2_iiwa_description)/config/iiwa_controllers.yaml</parameters>
+                <controller_manager_name>controller_manager</controller_manager_name>
+            </plugin>
+        </gazebo>
+        
+    </xacro:macro>
+
+
+</robot>

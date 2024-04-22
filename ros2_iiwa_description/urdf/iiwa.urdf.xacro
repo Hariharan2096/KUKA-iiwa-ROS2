@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="iiwa">
+
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="initial_positions_file" default="$(find ros2_iiwa_description)/config/initial_positions.yaml" />
+    <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
+
+    <xacro:include filename="$(find ros2_iiwa_description)/urdf/iiwa_macro.xacro"/>
+    <xacro:include filename="$(find ros2_iiwa_description)/urdf/iiwa_gazebo.xacro"/>
+    <xacro:include filename="$(find ros2_iiwa_description)/urdf/iiwa_ros2_control.xacro"/>
+
+    <link name="world"/>
+
+    <xacro:iiwa parent="world" prefix="" />
+
+    <xacro:iiwa_gazebo  prefix="$(arg prefix)" />
+
+    <xacro:iiwa_ros2_control prefix="$(arg prefix)" initial_positions="${xacro.load_yaml(initial_positions_file)}" />
+    <!-- <xacro:iiwa_ros2_control prefix="$(arg prefix)" initial_positions="$(arg initial_positions_file)" /> -->
+
+</robot>
